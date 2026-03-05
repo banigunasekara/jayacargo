@@ -42,11 +42,11 @@
         
         .map-container {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
             border-radius: 0.5rem;
-            background-color: #f3f4f6;
+            background-color: #222; /* Fallback color */
         }
         .map-container iframe {
             position: absolute;
@@ -116,7 +116,7 @@
                 <button onclick="changeLang('si')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-si">සිංහල</button>
                 <button onclick="changeLang('en')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-en">English</button>
                 <button onclick="changeLang('ta')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-ta">தமிழ்</button>
-                <button onclick="changeLang('dv')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-dv">ދިވެހި</button>
+                <button onclick="changeLang('dv')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-dv">ދිވެහි</button>
             </div>
         </div>
     </nav>
@@ -141,13 +141,14 @@
         </div>
     </header>
 
-    <!-- Video Showcase (Autoplay Fixed) -->
+    <!-- Video Showcase (Hosting Compatibility Fixed) -->
     <section class="py-6 sm:py-12 px-4 bg-white">
         <div class="max-w-4xl mx-auto">
-            <div class="rounded-lg overflow-hidden shadow-2xl bg-black border-2 sm:border-4 border-white aspect-video">
-                <!-- Autoplay with fallback sound logic -->
-                <video id="promoVideo" autoplay loop muted playsinline controls preload="auto" class="w-full h-full object-contain">
+            <div class="rounded-lg overflow-hidden shadow-2xl bg-black border-2 sm:border-4 border-white aspect-video relative">
+                <!-- Autoplay Fixed: Browsers require 'muted' to autoplay. User must click to hear sound. -->
+                <video id="promoVideo" autoplay loop muted playsinline controls preload="auto" class="w-full h-full object-contain bg-black">
                     <source src="vedio.mp4" type="video/mp4">
+                    <source src="./vedio.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -170,8 +171,8 @@
                     </div>
                     <ul class="space-y-3 sm:space-y-6 text-xs sm:text-xl">
                         <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1 sm:mt-1.5 mr-3 sm:mr-4"></i> <span data-i18n="min_weight">අවම බර: කිලෝග්‍රෑම් 15 (USD 45)</span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1 sm:mt-1.5 mr-3 sm:mr-4"></i> <span data-i18n="timing">සෑම මාසයකම මුල් සතියේ සිට භාණ්ඩ භාර ගැනේ.</span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1 sm:mt-1.5 mr-3 sm:mr-4"></i> <span data-i18n="passport">Passport පිටපතක් පමණක් ප්‍රමාණවත්ය.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1.5 mr-3 sm:mr-4"></i> <span data-i18n="timing">සෑම මාසයකම මුල් සතියේ සිට භාණ්ඩ භාර ගැනේ.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1.5 mr-3 sm:mr-4"></i> <span data-i18n="passport">Passport පිටපතක් පමණක් ප්‍රමාණවත්ය.</span></li>
                     </ul>
                 </div>
 
@@ -211,7 +212,7 @@
         </div>
     </section>
 
-    <!-- Location Section (Fixed) -->
+    <!-- Location Section (Stability Improved) -->
     <section class="py-10 sm:py-24 px-4 bg-white">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-8 sm:gap-16">
             <div class="flex-1 w-full">
@@ -230,16 +231,16 @@
             
             <div class="flex-1 w-full bg-zinc-50 p-4 sm:p-6 rounded shadow-2xl border border-gray-100">
                 <div class="map-container mb-6 sm:mb-8 shadow-inner border border-gray-200">
-                    <!-- Fixed Map Embed to Golden Gate 2 -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.0827289569065!2d73.51139451528657!3d4.172909996967527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b3f7f03a62884a7%3A0x6339097950c45152!2sGolden%20Gate%202!5e0!3m2!1sen!2smv!4v1710000000000!5m2!1sen!2smv" allowfullscreen="" loading="lazy"></iframe>
+                    <!-- Standard Embed Map for Golden Gate 2 Male -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.083!2d73.511!3d4.172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b3f7f03a62884a7%3A0x6339097950c45152!2sGolden%20Gate%202!5e0!3m2!1sen!2smv!4v1710000000000!5m2!1sen!2smv" allowfullscreen="" loading="lazy"></iframe>
                 </div>
                 
                 <div class="text-center">
                     <p class="text-zinc-900 font-black mb-4 sm:mb-8 text-sm sm:text-2xl" data-i18n="loc_instruction">
                         පළමු මහලේ පිහිටි අපගේ කාර්යාලය වෙත පැමිණෙන්න.
                     </p>
-                    <!-- Robust Direct Link -->
-                    <a href="https://www.google.com/maps/search/?api=1&query=Golden+Gate+2+Male+Maldives" target="_blank" class="bg-blue-600 text-white px-6 sm:px-12 py-3 sm:py-5 font-bold inline-flex items-center gap-3 sm:gap-4 hover:bg-black transition-all shadow-xl text-xs sm:text-xl uppercase">
+                    <!-- Stable Direct Link to Google Search for location (Works on all devices) -->
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Golden+Gate+2+Male+Maldives" target="_blank" class="bg-blue-600 text-white px-6 sm:px-12 py-3 sm:py-5 font-bold inline-flex items-center gap-3 sm:gap-4 hover:bg-black transition-all shadow-xl text-xs sm:text-xl uppercase">
                         <i class="fas fa-location-arrow"></i> <span data-i18n="btn_maps">Google Maps හරහා බලන්න</span>
                     </a>
                 </div>
@@ -254,70 +255,67 @@
             <p class="mb-8 sm:mb-16 text-gray-400 text-xs sm:text-2xl font-medium" data-i18n="contact_desc">මාලදිවයිනේ ඕනෑම තැනක සිට ඔබගේ පාර්සලය ගෙදරටම යැවීමට දැන්ම අප අමතන්න.</p>
 
             <div class="space-y-4 sm:space-y-8">
-                <!-- Contact Items -->
-                <div class="grid grid-cols-1 gap-4 sm:gap-8">
-                    <!-- Dimuthu -->
-                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
-                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
-                            <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">D</div>
-                            <div>
-                                <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_dimuthu">දිමුතු (Dimuthu)</p>
-                                <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9375525</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
-                            <a href="tel:9375525" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
-                            <a href="https://wa.me/9609375525" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                            <a href="viber://chat?number=9609375525" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
+                <!-- Dimuthu -->
+                <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                    <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                        <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">D</div>
+                        <div>
+                            <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_dimuthu">දිමුතු (Dimuthu)</p>
+                            <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9375525</p>
                         </div>
                     </div>
+                    <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
+                        <a href="tel:9375525" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                        <a href="https://wa.me/9609375525" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="viber://chat?number=9609375525" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
+                    </div>
+                </div>
 
-                    <!-- Uditha -->
-                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
-                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
-                            <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">U</div>
-                            <div>
-                                <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_uditha">උදිත (Uditha)</p>
-                                <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9428028</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
-                            <a href="tel:9428028" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
-                            <a href="https://wa.me/9609428028" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                            <a href="viber://chat?number=9609428028" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
+                <!-- Uditha -->
+                <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                    <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                        <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">U</div>
+                        <div>
+                            <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_uditha">උදිත (Uditha)</p>
+                            <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9428028</p>
                         </div>
                     </div>
+                    <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
+                        <a href="tel:9428028" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                        <a href="https://wa.me/9609428028" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="viber://chat?number=9428028" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
+                    </div>
+                </div>
 
-                    <!-- Jayawardana -->
-                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
-                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
-                            <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">J</div>
-                            <div>
-                                <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_jayawardana">ජයවර්ධන (Jayawardana)</p>
-                                <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9845380</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
-                            <a href="tel:9845380" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
-                            <a href="https://wa.me/9609845380" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                            <a href="viber://chat?number=9609845380" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
+                <!-- Jayawardana -->
+                <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                    <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                        <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">J</div>
+                        <div>
+                            <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_jayawardana">ජයවර්ධන (Jayawardana)</p>
+                            <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9845380</p>
                         </div>
                     </div>
+                    <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
+                        <a href="tel:9845380" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                        <a href="https://wa.me/9609845380" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="viber://chat?number=9845380" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
+                    </div>
+                </div>
 
-                    <!-- Anurada -->
-                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
-                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
-                            <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">A</div>
-                            <div>
-                                <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_anurada">අනුරාධ (Anurada)</p>
-                                <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9142549</p>
-                            </div>
+                <!-- Anurada -->
+                <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                    <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                        <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">A</div>
+                        <div>
+                            <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_anurada">අනුරාධ (Anurada)</p>
+                            <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9142549</p>
                         </div>
-                        <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
-                            <a href="tel:9142549" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
-                            <a href="https://wa.me/9609142549" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                            <a href="viber://chat?number=9609142549" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
-                        </div>
+                    </div>
+                    <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
+                        <a href="tel:9142549" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                        <a href="https://wa.me/9609142549" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="viber://chat?number=9142549" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
                     </div>
                 </div>
             </div>
@@ -326,8 +324,8 @@
 
     <!-- Footer -->
     <footer class="bg-black text-gray-500 py-10 sm:py-16 px-4 text-center border-t border-zinc-800">
-        <p class="mb-4 sm:mb-6 text-xs sm:text-xl font-bold text-gray-400 uppercase tracking-widest">© 2026 <span data-i18n="company_name" class="text-red-600">ජයා කාගෝ සර්විස්</span>. All Rights Reserved.</p>
-        <p class="text-sm sm:text-2xl font-bold italic px-4" data-i18n="footer_tag">මාලදිවයිනේ ශ්‍රී ලාංකිකයින්ගේ එකම විශ්වාසය.</p>
+        <p class="mb-4 sm:mb-6 text-sm sm:text-xl font-bold text-gray-400 uppercase tracking-widest">© 2026 <span data-i18n="company_name" class="text-red-600">ජයා කාගෝ සර්විස්</span>. All Rights Reserved.</p>
+        <p class="text-base sm:text-2xl font-bold italic px-4" data-i18n="footer_tag">මාලදිවයිනේ ශ්‍රී ලාංකිකයින්ගේ එකම විශ්වාසය.</p>
     </footer>
 
     <script>
@@ -393,8 +391,69 @@
                 name_anurada: "Anurada",
                 footer_tag: "The only trust of Sri Lankans in Maldives.",
                 address_html: '<span class="address-line">Opposite Golden Gate 2 Shop,</span><span class="address-line text-sm sm:text-2xl">Only at our usual building on the 1st Floor.</span>'
+            },
+            ta: {
+                company_name: "ஜெயா கார்கோ சர்வீஸ்",
+                company_name_short: "ஜெயா கார்கோ",
+                title: "ஜெயா கார்கோ சர்வீஸ் - மாலத்தீவில் இருந்து இலங்கை வரை",
+                hero_tag: "மாலத்தீவின் பழமையான & மிகவும் நம்பகமான",
+                hero_sub_heading: "உண்மையான இலங்கை நம்பிக்கை!",
+                hero_description: "மாலத்தீவில் உள்ள எமது சகோதரர்களின் கடின உழைப்பை பாதுகாப்பாகவும் நியாயமான விலையிலும் இலங்கைக்கு கொண்டு செல்லும் ஒரு பாலம்.",
+                btn_rates: "விலைகளைப் பார்க்க",
+                btn_contact: "தொடர்பு கொள்ள",
+                rates_title: "எமது கட்டணங்கள் மற்றும் சலுகைகள்",
+                per_kg: "1 கிலோகிராமுக்கு",
+                min_weight: "குறைந்தபட்ச எடை: 15 கிலோ (USD 45)",
+                timing: "ஒவ்வொரு மாதமும் முதல் வாரத்தில் இருந்து பொருட்கள் ஏற்றுக்கொள்ளப்படும்.",
+                passport: "கடவுச்சீட்டு (Passport) பிரதி போதுமானது.",
+                offer_5_title: "5KG இலவசம்!",
+                offer_5_desc: "55 கிலோவுக்கு மேற்பட்ட ஒவ்வொரு பார்சலுக்கும்",
+                offer_10_title: "10KG இலவசம்!",
+                offer_10_desc: "110 கிலோவுக்கு மேற்பட்ட ஒவ்வொரு பார்சலுக்கும்",
+                loc_title: "பொருட்களை ஒப்படைக்க வேண்டிய இடம்",
+                loc_info: "ஒவ்வொரு மாதமும் முதல் வாரம் முதல் இறுதி வரை பொருட்கள் ஏற்றுக்கொள்ளப்படும்.",
+                loc_instruction: "முதலாம் மாடியில் அமைந்துள்ள எமது அலுவலகத்திற்கு வரவும்.",
+                btn_maps: "Google Maps இல் பார்க்க",
+                contact_title: "இன்றே எம்மைத் தொடர்பு கொள்ளவும்",
+                contact_desc: "மாலத்தீவின் எந்த இடத்திலிருந்தும் உங்கள் பார்சலை இலங்கைக்கு அனுப்ப எம்மை அழைக்கவும்.",
+                name_dimuthu: "திமுத்து (Dimuthu)",
+                name_uditha: "உதித (Uditha)",
+                name_jayawardana: "ஜயவர்தன (Jayawardana)",
+                name_anurada: "அனுராத (Anurada)",
+                footer_tag: "மாலத்தீவில் உள்ள இலங்கையர்களின் ஒரே நம்பிக்கை.",
+                address_html: '<span class="address-line">Golden Gate 2 கடைக்கு எதிரே,</span><span class="address-line text-sm sm:text-2xl">முதலாம் மாடியில் அமைந்துள்ள எமது அலுவலகத்தில் மாத்திரம்.</span>'
+            },
+            dv: {
+                company_name: "ޖަޔާ ކާގޯ ސާވިސް",
+                company_name_short: "ޖަޔާ ކާގޯ",
+                title: "ޖަޔާ ކާގޯ ސާވިސް - މާލެދީވްސް އިން ސްރީ ލަންކާ",
+                hero_tag: "މާލެދީވްސްގެ އެންމެ ގަދަ އަދި ވިސްނުން އެކު ހުރި ސާވިސް",
+                hero_sub_heading: "ސްރީ ލަންކާގެ އެއްވެސް ވިސްނުން!",
+                hero_description: "މާލެދީވްސްގައި ހުރި ސްރީ ލަންކާގެ މީހުންގެ މަސައްކަތް ސަލާމަތާއި ހެޔޮ އަގެއްގައި ގެއަށް ފޮނުވާ ސާވިސް.",
+                btn_rates: "ރޭޓްތައް ބަލާ",
+                btn_contact: "ގުޅުއްވާ",
+                rates_title: "އަގުތައް އަދި އޮފަރތައް",
+                per_kg: "1 ކިލޯގްރާމަށް",
+                min_weight: "މިނިމަމް ބަރު: 15 KG (USD 45)",
+                timing: "ކޮންමෙ މަހަކު ފުރަތަމා ހަފްތާއިން ފެށޭ.",
+                passport: "ޕާސްޕޯޓް ކޮޕީ އެކަން ފުދޭ.",
+                offer_5_title: "5 ކިލޯ ހިލޭ!",
+                offer_5_desc: "55 ކިލޯއަށްވުރෙ ගින මුދަލަށް",
+                offer_10_title: "10 ކިލޯ ހިලޭ!",
+                offer_10_desc: "110 ކިލޯއަށްވުރෙ ගින මුදަލަށް",
+                loc_title: "ތަކެތި ދޭ ތަން",
+                loc_info: "ކޮންމෙ މަހަކު ފުރަތަމා ހަފްතާއިން ނިމෙන්දེން.",
+                loc_instruction: "1 ވަނަ ފްލޯރުގައި ހުރި އޮފީސަށް އަންނާ.",
+                btn_maps: "Google Maps ބަލාලුමට්",
+                contact_title: "මිහාරු ගුළුක්වා",
+                contact_desc: "ලංකාඅට්ට මුදා ෆޮނුවුමට්ට මිහාරු වෙස් އළුގන්ඩුމෙන් ފෝން කුރක්වා.",
+                name_dimuthu: "ඩිමුතු",
+                name_uditha: "අුදිතා",
+                name_jayawardana: "ޖަޔަވަރްދަނަ",
+                name_anurada: "අනුරාධ",
+                footer_tag: "މާލެދީވްސްގައި ސްރީ ލަންކާގެ އެއްވެސް ވިސްނުން.",
+                address_html: '<span class="address-line">ගෝල්ඩަން ގޭޓް 2 ފިހާރަ ކުރިමަތީ،</span><span class="address-line text-sm sm:text-2xl">අަޅުގަނޑުމެන්ގެ އޮފީސް ހުންނާނީ ފުރަތަމා ފަންގިފιލާގައެވެ.</span>'
             }
-            // Tamil and Divehi omitted for brevity, same structure applies
         };
 
         function changeLang(lang) {
@@ -417,12 +476,13 @@
             }
 
             document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('bg-red-600', 'text-white', 'border-red-600'));
-            document.getElementById('btn-' + lang).classList.add('bg-red-600', 'text-white', 'border-red-600');
+            const activeBtn = document.getElementById('btn-' + lang);
+            if (activeBtn) activeBtn.classList.add('bg-red-600', 'text-white', 'border-red-600');
         }
 
         const video = document.getElementById('promoVideo');
         
-        // Autoplay policy bypass: Unmute on first user interaction
+        // Autoplay policy handle: Force unmuting on first user interaction
         const handleInteraction = () => {
             if (video) {
                 video.muted = false;
@@ -439,9 +499,11 @@
 
         window.onload = () => {
             changeLang('si');
-            if (video) video.play().catch(() => {
-                console.log("Autoplay blocked. Waiting for interaction.");
-            });
+            if (video) {
+                video.play().catch(() => {
+                    console.log("Autoplay blocked. Waiting for interaction.");
+                });
+            }
         };
     </script>
 </body>
