@@ -40,13 +40,23 @@
         .bg-jaya-red { background-color: var(--brand-red); }
         .card-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
         
+        /* Fixed Video Container Height */
+        .video-container {
+            position: relative;
+            width: 100%;
+            background-color: #000;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
         .map-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
             border-radius: 0.5rem;
-            background-color: #222; /* Fallback color */
+            background-color: #f3f4f6;
         }
         .map-container iframe {
             position: absolute;
@@ -116,7 +126,7 @@
                 <button onclick="changeLang('si')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-si">සිංහල</button>
                 <button onclick="changeLang('en')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-en">English</button>
                 <button onclick="changeLang('ta')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-ta">தமிழ்</button>
-                <button onclick="changeLang('dv')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-dv">ދිވެහි</button>
+                <button onclick="changeLang('dv')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-dv">ދިވެހި</button>
             </div>
         </div>
     </nav>
@@ -141,12 +151,12 @@
         </div>
     </header>
 
-    <!-- Video Showcase (Hosting Compatibility Fixed) -->
+    <!-- Video Showcase (Fixed for Hosting) -->
     <section class="py-6 sm:py-12 px-4 bg-white">
         <div class="max-w-4xl mx-auto">
-            <div class="rounded-lg overflow-hidden shadow-2xl bg-black border-2 sm:border-4 border-white aspect-video relative">
-                <!-- Autoplay Fixed: Browsers require 'muted' to autoplay. User must click to hear sound. -->
-                <video id="promoVideo" autoplay loop muted playsinline controls preload="auto" class="w-full h-full object-contain bg-black">
+            <div class="video-container aspect-video">
+                <!-- Autoplay Fixed: Browsers require 'muted' to autoplay. We use script to try unmuting later. -->
+                <video id="promoVideo" autoplay loop muted playsinline controls preload="auto" class="w-full h-full object-contain">
                     <source src="vedio.mp4" type="video/mp4">
                     <source src="./vedio.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -212,7 +222,7 @@
         </div>
     </section>
 
-    <!-- Location Section (Stability Improved) -->
+    <!-- Location Section (Fixed for All Devices) -->
     <section class="py-10 sm:py-24 px-4 bg-white">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-8 sm:gap-16">
             <div class="flex-1 w-full">
@@ -231,16 +241,16 @@
             
             <div class="flex-1 w-full bg-zinc-50 p-4 sm:p-6 rounded shadow-2xl border border-gray-100">
                 <div class="map-container mb-6 sm:mb-8 shadow-inner border border-gray-200">
-                    <!-- Standard Embed Map for Golden Gate 2 Male -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.083!2d73.511!3d4.172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b3f7f03a62884a7%3A0x6339097950c45152!2sGolden%20Gate%202!5e0!3m2!1sen!2smv!4v1710000000000!5m2!1sen!2smv" allowfullscreen="" loading="lazy"></iframe>
+                    <!-- Standard Fixed Embed Map for Golden Gate 2 Male -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.0827!2d73.5113!3d4.1729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b3f7f03a62884a7%3A0x6339097950c45152!2sGolden%20Gate%202!5e0!3m2!1sen!2smv!4v1710000000000!5m2!1sen!2smv" allowfullscreen="" loading="lazy"></iframe>
                 </div>
                 
                 <div class="text-center">
                     <p class="text-zinc-900 font-black mb-4 sm:mb-8 text-sm sm:text-2xl" data-i18n="loc_instruction">
                         පළමු මහලේ පිහිටි අපගේ කාර්යාලය වෙත පැමිණෙන්න.
                     </p>
-                    <!-- Stable Direct Link to Google Search for location (Works on all devices) -->
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=Golden+Gate+2+Male+Maldives" target="_blank" class="bg-blue-600 text-white px-6 sm:px-12 py-3 sm:py-5 font-bold inline-flex items-center gap-3 sm:gap-4 hover:bg-black transition-all shadow-xl text-xs sm:text-xl uppercase">
+                    <!-- More Stable Search Link -->
+                    <a href="https://www.google.com/maps/search/?api=1&query=Golden+Gate+2+Male+Maldives" target="_blank" class="bg-blue-600 text-white px-6 sm:px-12 py-3 sm:py-5 font-bold inline-flex items-center gap-3 sm:gap-4 hover:bg-black transition-all shadow-xl text-xs sm:text-xl uppercase">
                         <i class="fas fa-location-arrow"></i> <span data-i18n="btn_maps">Google Maps හරහා බලන්න</span>
                     </a>
                 </div>
@@ -429,30 +439,30 @@
                 title: "ޖަޔާ ކާގޯ ސާވިސް - މާލެދީވްސް އިން ސްރީ ލަންކާ",
                 hero_tag: "މާލެދީވްސްގެ އެންމެ ގަދަ އަދި ވިސްނުން އެކު ހުރި ސާވިސް",
                 hero_sub_heading: "ސްރީ ލަންކާގެ އެއްވެސް ވިސްނުން!",
-                hero_description: "މާލެދީވްސްގައި ހުރި ސްރީ ލަންކާގެ މީހުންގެ މަސައްކަތް ސަލާމަތާއި ހެޔޮ އަގެއްގައި ގެއަށް ފޮނުވާ ސާވިސް.",
+                hero_description: "މާލެދީވްސްގައި ހުރި ސްރީ ލަންކާގެ މީහުންގެ މަސައްކަތް ސަލާމަތާއި ހެޔޮ އަގެއްގައި ގެއަށް ފޮނުވާ ސާވިސް.",
                 btn_rates: "ރޭޓްތައް ބަލާ",
                 btn_contact: "ގުޅުއްވާ",
                 rates_title: "އަގުތައް އަދި އޮފަރތައް",
                 per_kg: "1 ކިލޯގްރާމަށް",
                 min_weight: "މިނިމަމް ބަރު: 15 KG (USD 45)",
-                timing: "ކޮންමෙ މަހަކު ފުރަތަމා ހަފްތާއިން ފެށޭ.",
+                timing: "ކޮންމެ މަހަކު ފުރަތަމަ ހަފްތާއިން ފެށޭ.",
                 passport: "ޕާސްޕޯޓް ކޮޕީ އެކަން ފުދޭ.",
                 offer_5_title: "5 ކިލޯ ހިލޭ!",
-                offer_5_desc: "55 ކިލޯއަށްވުރෙ ගින මුދަލަށް",
-                offer_10_title: "10 ކިލޯ ހިලޭ!",
-                offer_10_desc: "110 ކިލޯއަށްވުރෙ ගින මුදަލަށް",
+                offer_5_desc: "55 ކިލޯއަށްވުރෙ ගින මුදަލަށް",
+                offer_10_title: "10 ކިލޯ ހිލޭ!",
+                offer_10_desc: "110 ކިލෝއަށްވުރෙ ගින මුදަލަށް",
                 loc_title: "ތަކެތި ދޭ ތަން",
-                loc_info: "ކޮންމෙ މަހަކު ފުރަތަމා ހަފްතާއިން ނިމෙන්දེން.",
+                loc_info: "ކޮންމެ މަހަކު ފުރަތަމා ހަފްތާއިން ނިމෙන්දེން.",
                 loc_instruction: "1 ވަނަ ފްލޯރުގައި ހުރި އޮފީސަށް އަންނާ.",
-                btn_maps: "Google Maps ބަލාලුමට්",
+                btn_maps: "Google Maps ބަލාලුމަށް",
                 contact_title: "මිහාරු ගුළුක්වා",
-                contact_desc: "ලංකාඅට්ට මුදා ෆޮނුවුමට්ට මිහාරු වෙස් އළුގන්ඩුމෙන් ފෝން කුރක්වා.",
+                contact_desc: "ලංකාඅට්ට මුදා ෆොනුවුමට්ට මිහාරු වෙස් අළුගන්ඩුමෙන් පෝން කුරක්වා.",
                 name_dimuthu: "ඩිමුතු",
                 name_uditha: "අුදිතා",
                 name_jayawardana: "ޖަޔަވަރްދަނަ",
                 name_anurada: "අනුරාධ",
                 footer_tag: "މާލެދީވްސްގައި ސްރީ ލަންކާގެ އެއްވެސް ވިސްނުން.",
-                address_html: '<span class="address-line">ගෝල්ඩަން ގޭޓް 2 ފިހާރަ ކުރިමަތީ،</span><span class="address-line text-sm sm:text-2xl">අަޅުގަނޑުމެන්ގެ އޮފީސް ހުންނާނީ ފުރަތަމා ފަންގިފιލާގައެވެ.</span>'
+                address_html: '<span class="address-line">ගෝල්ޑަން ގޭޓް 2 ފިހާރަ ކުރිමަތީ،</span><span class="address-line text-sm sm:text-2xl">අަޅුගަނޑުމෙන්නෙ කාර්යාලය පළමු මහලේ පිහිටා ඇත.</span>'
             }
         };
 
@@ -482,7 +492,7 @@
 
         const video = document.getElementById('promoVideo');
         
-        // Autoplay policy handle: Force unmuting on first user interaction
+        // Autoplay policy handle: Force play on first user interaction if blocked
         const handleInteraction = () => {
             if (video) {
                 video.muted = false;
