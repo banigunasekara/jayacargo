@@ -40,7 +40,6 @@
         .bg-jaya-red { background-color: var(--brand-red); }
         .card-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
         
-        /* Fixed Video Container Height */
         .video-container {
             position: relative;
             width: 100%;
@@ -151,14 +150,24 @@
         </div>
     </header>
 
-    <!-- Video Showcase (Fixed for Hosting) -->
-    <section class="py-6 sm:py-12 px-4 bg-white">
+    <!-- Video Showcase (Integrated fixed code) -->
+    <section class="py-8 sm:py-12 px-4 bg-white">
         <div class="max-w-4xl mx-auto">
-            <div class="video-container aspect-video">
-                <!-- Autoplay Fixed: Browsers require 'muted' to autoplay. We use script to try unmuting later. -->
-                <video id="promoVideo" autoplay loop muted playsinline controls preload="auto" class="w-full h-full object-contain">
-                    <source src="vedio.mp4" type="video/mp4">
-                    <source src="./vedio.mp4" type="video/mp4">
+            <div class="rounded-lg overflow-hidden shadow-2xl bg-black border-2 sm:border-4 border-white aspect-video relative">
+
+                <div class="absolute inset-0 bg-zinc-900 flex items-center justify-center -z-10">
+                    <i class="fas fa-play-circle text-6xl text-white opacity-20"></i>
+                </div>
+
+                <video
+                    id="promoVideo"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    class="w-full h-full object-contain">
+                    <source src="./video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -222,7 +231,7 @@
         </div>
     </section>
 
-    <!-- Location Section (Fixed for All Devices) -->
+    <!-- Location Section (Fixed Frame) -->
     <section class="py-10 sm:py-24 px-4 bg-white">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-8 sm:gap-16">
             <div class="flex-1 w-full">
@@ -241,15 +250,18 @@
             
             <div class="flex-1 w-full bg-zinc-50 p-4 sm:p-6 rounded shadow-2xl border border-gray-100">
                 <div class="map-container mb-6 sm:mb-8 shadow-inner border border-gray-200">
-                    <!-- Standard Fixed Embed Map for Golden Gate 2 Male -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.0827!2d73.5113!3d4.1729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b3f7f03a62884a7%3A0x6339097950c45152!2sGolden%20Gate%202!5e0!3m2!1sen!2smv!4v1710000000000!5m2!1sen!2smv" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe
+                    src="https://www.google.com/maps?q=Golden+Gate+2+Male+Maldives&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen>
+                    </iframe>
                 </div>
                 
                 <div class="text-center">
                     <p class="text-zinc-900 font-black mb-4 sm:mb-8 text-sm sm:text-2xl" data-i18n="loc_instruction">
                         පළමු මහලේ පිහිටි අපගේ කාර්යාලය වෙත පැමිණෙන්න.
                     </p>
-                    <!-- More Stable Search Link -->
                     <a href="https://www.google.com/maps/search/?api=1&query=Golden+Gate+2+Male+Maldives" target="_blank" class="bg-blue-600 text-white px-6 sm:px-12 py-3 sm:py-5 font-bold inline-flex items-center gap-3 sm:gap-4 hover:bg-black transition-all shadow-xl text-xs sm:text-xl uppercase">
                         <i class="fas fa-location-arrow"></i> <span data-i18n="btn_maps">Google Maps හරහා බලන්න</span>
                     </a>
@@ -265,67 +277,69 @@
             <p class="mb-8 sm:mb-16 text-gray-400 text-xs sm:text-2xl font-medium" data-i18n="contact_desc">මාලදිවයිනේ ඕනෑම තැනක සිට ඔබගේ පාර්සලය ගෙදරටම යැවීමට දැන්ම අප අමතන්න.</p>
 
             <div class="space-y-4 sm:space-y-8">
-                <!-- Dimuthu -->
-                <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
-                    <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
-                        <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">D</div>
-                        <div>
-                            <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_dimuthu">දිමුතු (Dimuthu)</p>
-                            <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9375525</p>
+                <div class="grid grid-cols-1 gap-4 sm:gap-8">
+                    <!-- Dimuthu -->
+                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                            <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">D</div>
+                            <div>
+                                <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_dimuthu">දිමුතු (Dimuthu)</p>
+                                <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9375525</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
+                            <a href="tel:9375525" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                            <a href="https://wa.me/9609375525" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="viber://chat?number=9609375525" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
                         </div>
                     </div>
-                    <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
-                        <a href="tel:9375525" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
-                        <a href="https://wa.me/9609375525" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        <a href="viber://chat?number=9609375525" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
-                    </div>
-                </div>
 
-                <!-- Uditha -->
-                <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
-                    <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
-                        <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">U</div>
-                        <div>
-                            <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_uditha">උදිත (Uditha)</p>
-                            <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9428028</p>
+                    <!-- Uditha -->
+                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                            <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">U</div>
+                            <div>
+                                <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_uditha">උදිත (Uditha)</p>
+                                <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9428028</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
+                            <a href="tel:9428028" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                            <a href="https://wa.me/9609428028" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="viber://chat?number=9428028" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
                         </div>
                     </div>
-                    <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
-                        <a href="tel:9428028" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
-                        <a href="https://wa.me/9609428028" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        <a href="viber://chat?number=9428028" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
-                    </div>
-                </div>
 
-                <!-- Jayawardana -->
-                <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
-                    <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
-                        <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">J</div>
-                        <div>
-                            <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_jayawardana">ජයවර්ධන (Jayawardana)</p>
-                            <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9845380</p>
+                    <!-- Jayawardana -->
+                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                            <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">J</div>
+                            <div>
+                                <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_jayawardana">ජයවර්ධන (Jayawardana)</p>
+                                <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9845380</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
+                            <a href="tel:9845380" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                            <a href="https://wa.me/9609845380" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="viber://chat?number=9845380" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
                         </div>
                     </div>
-                    <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
-                        <a href="tel:9845380" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
-                        <a href="https://wa.me/9609845380" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        <a href="viber://chat?number=9845380" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
-                    </div>
-                </div>
 
-                <!-- Anurada -->
-                <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
-                    <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
-                        <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">A</div>
-                        <div>
-                            <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_anurada">අනුරාධ (Anurada)</p>
-                            <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9142549</p>
+                    <!-- Anurada -->
+                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                            <div class="w-10 h-10 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm sm:text-4xl shadow-lg">A</div>
+                            <div>
+                                <p class="font-black text-sm sm:text-3xl text-white uppercase" data-i18n="name_anurada">අනුරාධ (Anurada)</p>
+                                <p class="text-red-500 text-sm sm:text-3xl font-black tracking-widest">9142549</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
-                        <a href="tel:9142549" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
-                        <a href="https://wa.me/9609142549" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        <a href="viber://chat?number=9142549" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
+                        <div class="flex flex-wrap md:flex-nowrap gap-1.5 sm:gap-2 w-full md:w-auto">
+                            <a href="tel:9142549" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                            <a href="https://wa.me/9609142549" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="viber://chat?number=9142549" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -437,32 +451,32 @@
                 company_name: "ޖަޔާ ކާގޯ ސާވިސް",
                 company_name_short: "ޖަޔާ ކާގޯ",
                 title: "ޖަޔާ ކާގޯ ސާވިސް - މާލެދީވްސް އިން ސްރީ ލަންކާ",
-                hero_tag: "މާލެދީވްސްގެ އެންމެ ގަދަ އަދި ވިސްނުން އެކު ހުރި ސާވިސް",
+                hero_tag: "މާލެދީވްސްގެ އެންމެ ގަދަ އަދި ވިސްނުން އެކު ހරි ސާވިސް",
                 hero_sub_heading: "ސްރީ ލަންކާގެ އެއްވެސް ވިސްނުން!",
-                hero_description: "މާލެދީވްސްގައި ހުރި ސްރީ ލަންކާގެ މީහުންގެ މަސައްކަތް ސަލާމަތާއި ހެޔޮ އަގެއްގައި ގެއަށް ފޮނުވާ ސާވިސް.",
+                hero_description: "މާލެދީވްސްގައި ހුරි ސްރީ ލަންකාގެ මީහުންගේ މަސައްކަތް ސަލާމަތާއި ހެޔޮ އަގެއްގައި ގެއަށް ފޮނުވާ ސާވިސް.",
                 btn_rates: "ރޭޓްތައް ބަލާ",
                 btn_contact: "ގުޅުއްވާ",
                 rates_title: "އަގުތައް އަދި އޮފަރތައް",
                 per_kg: "1 ކިލޯގްރާމަށް",
                 min_weight: "މިނިމަމް ބަރު: 15 KG (USD 45)",
-                timing: "ކޮންމެ މަހަކު ފުރަތަމަ ހަފްތާއިން ފެށޭ.",
+                timing: "ކޮންމෙ މަހަކު ފުރަތަމަ ހަފްތާއިން ފެށޭ.",
                 passport: "ޕާސްޕޯޓް ކޮޕީ އެކަން ފުދޭ.",
                 offer_5_title: "5 ކިލޯ ހިލޭ!",
-                offer_5_desc: "55 ކިލޯއަށްވުރෙ ගින මුදަލަށް",
-                offer_10_title: "10 ކިލޯ ހිލޭ!",
-                offer_10_desc: "110 ކިލෝއަށްވުރෙ ගින මුදަލަށް",
+                offer_5_desc: "55 ކިލޯއަށްވުރෙ ގින මුදަލަށް",
+                offer_10_title: "10 ކިލޯ ހިලޭ!",
+                offer_10_desc: "110 ކිލෝއަށްވުރෙ ގින මුදަލަށް",
                 loc_title: "ތަކެތި ދޭ ތަން",
-                loc_info: "ކޮންމެ މަހަކު ފުރަތަމා ހަފްތާއިން ނިމෙන්දེން.",
-                loc_instruction: "1 ވަނަ ފްލޯރުގައި ހުރި އޮފީސަށް އަންނާ.",
-                btn_maps: "Google Maps ބަލාලුމަށް",
+                loc_info: "ކޮންމෙ މަހަކު ފުރަތަމා ހަފްතާއިން ނިމෙන්ދެން.",
+                loc_instruction: "1 ވަނަ ފްලޯރުގައި ހުރි އޮފީސަށް އަންނާ.",
+                btn_maps: "Google Maps ބަލާ",
                 contact_title: "මිහාරු ගුළුක්වා",
-                contact_desc: "ලංකාඅට්ට මුදා ෆොනුවුමට්ට මිහාරු වෙස් අළුගන්ඩුමෙන් පෝން කුරක්වා.",
+                contact_desc: "ලංකාඅට්ට මුදා ෆޮނුවුමට්ට මිහාරු වෙස් අළුගන්ඩුමෙන් පޯން කුරක්වා.",
                 name_dimuthu: "ඩිමුතු",
                 name_uditha: "අුදිතා",
-                name_jayawardana: "ޖަޔަވަރްދަނަ",
+                name_jayawardana: "ජයවර්ධන",
                 name_anurada: "අනුරාධ",
                 footer_tag: "މާލެދީވްސްގައި ސްރީ ލަންކާގެ އެއްވެސް ވިސްނުން.",
-                address_html: '<span class="address-line">ගෝල්ޑަން ގޭޓް 2 ފިހާރަ ކުރිමަތީ،</span><span class="address-line text-sm sm:text-2xl">අަޅුගަނޑުމෙන්නෙ කාර්යාලය පළමු මහලේ පිහිටා ඇත.</span>'
+                address_html: '<span class="address-line">ގޯލްޑަން ގޭޓް 2 ފިހާރަ ކުރිමަތީ،</span><span class="address-line text-sm sm:text-2xl">අަޅුގަނޑުމෙන්නෙ කාර්යාලය පළමු මහලේ පිහිටා ඇත.</span>'
             }
         };
 
@@ -490,30 +504,36 @@
             if (activeBtn) activeBtn.classList.add('bg-red-600', 'text-white', 'border-red-600');
         }
 
-        const video = document.getElementById('promoVideo');
-        
-        // Autoplay policy handle: Force play on first user interaction if blocked
-        const handleInteraction = () => {
+        const video = document.getElementById("promoVideo");
+
+        function startVideo(){
+            if(video){
+                video.muted = true;
+                video.play().catch(()=>{});
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", startVideo);
+        document.addEventListener("click", startVideo);
+        document.addEventListener("touchstart", startVideo);
+        document.addEventListener("scroll", startVideo);
+
+        // Logic for force unmuting after interaction if user wants sound
+        const unmuteVideo = () => {
             if (video) {
                 video.muted = false;
                 video.play().catch(() => {});
             }
-            window.removeEventListener('click', handleInteraction);
-            window.removeEventListener('touchstart', handleInteraction);
-            window.removeEventListener('scroll', handleInteraction);
+            window.removeEventListener('click', unmuteVideo);
+            window.removeEventListener('touchstart', unmuteVideo);
         };
-
-        window.addEventListener('click', handleInteraction);
-        window.addEventListener('touchstart', handleInteraction);
-        window.addEventListener('scroll', handleInteraction, { passive: true });
+        // Re-adding unmuting logic separately if the user specifically interacts with intent to hear
+        window.addEventListener('click', unmuteVideo);
+        window.addEventListener('touchstart', unmuteVideo);
 
         window.onload = () => {
             changeLang('si');
-            if (video) {
-                video.play().catch(() => {
-                    console.log("Autoplay blocked. Waiting for interaction.");
-                });
-            }
+            startVideo();
         };
     </script>
 </body>
