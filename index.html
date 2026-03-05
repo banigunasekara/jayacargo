@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -21,6 +22,7 @@
             scroll-behavior: smooth;
             transition: all 0.3s ease;
             background-color: var(--brand-white);
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
         }
         .lang-dv { font-family: var(--divehi-font); direction: rtl; text-align: right; }
         .lang-ta { font-family: var(--tamil-font); }
@@ -29,8 +31,12 @@
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('herosection.jpeg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: scroll; /* Better performance on mobile than fixed */
         }
+        @media (min-width: 1024px) {
+            .hero-gradient { background-attachment: fixed; }
+        }
+
         .text-jaya-red { color: var(--brand-red); }
         .bg-jaya-red { background-color: var(--brand-red); }
         .card-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
@@ -63,10 +69,13 @@
         }
         .gallery-img {
             width: 100%;
-            height: 250px;
+            height: 200px;
             object-fit: cover;
             border-radius: 0.5rem;
             transition: transform 0.3s;
+        }
+        @media (min-width: 768px) {
+            .gallery-img { height: 250px; }
         }
         .gallery-img:hover {
             transform: scale(1.02);
@@ -76,68 +85,68 @@
         .whatsapp-bg { background-color: #25D366; }
         .viber-bg { background-color: #7360f2; }
         
-        /* Unified Button Styling for consistent alignment */
+        /* Fixed Button Sizing for alignment on all devices */
         .btn-contact {
-            min-width: 110px;
+            min-width: 100px;
+            flex: 1; /* Allow buttons to grow equally */
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.4rem;
-            padding: 0.6rem 0.8rem;
+            padding: 0.75rem 0.5rem;
             font-weight: 800;
             text-transform: uppercase;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             border-radius: 0.5rem;
             transition: all 0.2s;
             white-space: nowrap;
         }
-        .btn-contact:hover { transform: scale(1.05); }
-
-        @media (max-width: 768px) {
-            .btn-contact { min-width: 90px; font-size: 0.7rem; padding: 0.5rem 0.6rem; }
+        @media (min-width: 640px) {
+            .btn-contact { font-size: 0.8rem; min-width: 110px; }
         }
+        .btn-contact:hover { transform: translateY(-2px); }
     </style>
 </head>
 <body class="bg-white text-gray-900" id="main-body">
 
     <!-- Language Switcher Nav -->
-    <nav class="sticky-nav py-4 px-4 shadow-md">
-        <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-3">
-            <div class="font-bold text-jaya-red text-2xl tracking-tighter uppercase" data-i18n="company_name_short">JAYA CARGO</div>
-            <div class="flex gap-2">
-                <button onclick="changeLang('si')" class="px-4 py-1.5 rounded border border-gray-300 hover:bg-red-600 hover:text-white hover:border-red-600 transition font-bold text-sm" id="btn-si">සිංහල</button>
-                <button onclick="changeLang('en')" class="px-4 py-1.5 rounded border border-gray-300 hover:bg-red-600 hover:text-white hover:border-red-600 transition font-bold text-sm" id="btn-en">English</button>
-                <button onclick="changeLang('ta')" class="px-4 py-1.5 rounded border border-gray-300 hover:bg-red-600 hover:text-white hover:border-red-600 transition font-bold text-sm" id="btn-ta">தமிழ்</button>
-                <button onclick="changeLang('dv')" class="px-4 py-1.5 rounded border border-gray-300 hover:bg-red-600 hover:text-white hover:border-red-600 transition font-bold text-sm" id="btn-dv">ދިވެހި</button>
+    <nav class="sticky-nav py-3 px-2 sm:px-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="font-bold text-jaya-red text-xl sm:text-2xl tracking-tighter uppercase" data-i18n="company_name_short">JAYA CARGO</div>
+            <div class="flex flex-wrap justify-center gap-1.5">
+                <button onclick="changeLang('si')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-si">සිංහල</button>
+                <button onclick="changeLang('en')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-en">English</button>
+                <button onclick="changeLang('ta')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-ta">தமிழ்</button>
+                <button onclick="changeLang('dv')" class="px-3 py-1 rounded border border-gray-300 hover:bg-red-600 hover:text-white transition font-bold text-xs sm:text-sm" id="btn-dv">ދިވެހި</button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero-gradient h-[80vh] flex items-center justify-center text-center text-white px-4">
+    <header class="hero-gradient min-h-[70vh] sm:h-[80vh] flex items-center justify-center text-center text-white px-4 py-12">
         <div class="max-w-4xl">
-            <div class="inline-block bg-red-600 px-4 py-1 text-sm font-bold mb-6 tracking-widest uppercase shadow-lg" data-i18n="hero_tag">
+            <div class="inline-block bg-red-600 px-4 py-1 text-xs sm:text-sm font-bold mb-4 sm:mb-6 tracking-widest uppercase shadow-lg" data-i18n="hero_tag">
                 Maldives' Oldest & Most Trusted
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-2xl">
+            <h1 class="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight drop-shadow-2xl px-2">
                 <span data-i18n="company_name" class="text-white">ජයා කාගෝ සර්විස්</span> <br>
                 <span class="text-red-500" data-i18n="hero_sub_heading">සැබෑ ශ්‍රී ලාංකික විශ්වාසය!</span>
             </h1>
-            <p class="text-xl md:text-2xl mb-10 text-gray-100 font-medium max-w-2xl mx-auto" data-i18n="hero_description">
+            <p class="text-base sm:text-xl md:text-2xl mb-8 sm:mb-10 text-gray-100 font-medium max-w-2xl mx-auto px-4" data-i18n="hero_description">
                 මාලදිවයිනේ සිටින අපේම සහෝදරයින්ගේ මහන්සිය, සුරක්ෂිතව සහ සාධාරණ මිලකට ලංකාවේ නිවසටම රැගෙන යන සහෝදරත්වයේ පාලම.
             </p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="#rates" class="bg-red-600 text-white px-12 py-4 font-bold hover:bg-black transition-all shadow-xl text-lg uppercase" data-i18n="btn_rates">මිල ගණන් බලන්න</a>
-                <a href="#contact" class="bg-white text-red-600 px-12 py-4 font-bold hover:bg-gray-100 transition-all shadow-xl text-lg uppercase" data-i18n="btn_contact">සම්බන්ධ වන්න</a>
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+                <a href="#rates" class="bg-red-600 text-white px-8 sm:px-12 py-3 sm:py-4 font-bold hover:bg-black transition-all shadow-xl text-sm sm:text-lg uppercase" data-i18n="btn_rates">මිල ගණන් බලන්න</a>
+                <a href="#contact" class="bg-white text-red-600 px-8 sm:px-12 py-3 sm:py-4 font-bold hover:bg-gray-100 transition-all shadow-xl text-sm sm:text-lg uppercase" data-i18n="btn_contact">සම්බන්ධ වන්න</a>
             </div>
         </div>
     </header>
 
     <!-- Video Showcase (Autoplay Fixed) -->
-    <section class="py-12 px-4 bg-white">
+    <section class="py-8 sm:py-12 px-4 bg-white">
         <div class="max-w-4xl mx-auto">
-            <div class="rounded-lg overflow-hidden shadow-2xl bg-black border-4 border-white">
-                <video id="promoVideo" autoplay loop muted playsinline controls class="w-full">
+            <div class="rounded-lg overflow-hidden shadow-2xl bg-black border-2 sm:border-4 border-white">
+                <video id="promoVideo" autoplay loop muted playsinline controls class="w-full h-auto">
                     <source src="vedio.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -146,40 +155,40 @@
     </section>
 
     <!-- Rates Section -->
-    <section id="rates" class="py-20 bg-zinc-900 text-white px-4">
+    <section id="rates" class="py-12 sm:py-20 bg-zinc-900 text-white px-4">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 uppercase tracking-tight" data-i18n="rates_title">අපගේ ගාස්තු සහ විශේෂ දීමනා</h2>
-                <div class="h-1.5 w-24 bg-red-600 mx-auto"></div>
+            <div class="text-center mb-10 sm:text-center">
+                <h2 class="text-2xl sm:text-4xl font-bold mb-4 uppercase tracking-tight" data-i18n="rates_title">අපගේ ගාස්තු සහ විශේෂ දීමනා</h2>
+                <div class="h-1 w-16 sm:w-24 bg-red-600 mx-auto"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
-                <div class="bg-zinc-800 p-10 rounded-lg border-l-8 border-red-600 shadow-2xl flex flex-col justify-center">
-                    <div class="flex justify-between items-center mb-8 border-b border-zinc-700 pb-6">
-                        <span class="text-2xl font-bold" data-i18n="per_kg">කිලෝග්‍රෑම් 1ක් සඳහා</span>
-                        <span class="text-5xl font-black text-red-500">USD 3</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-stretch">
+                <div class="bg-zinc-800 p-6 sm:p-10 rounded-lg border-l-4 sm:border-l-8 border-red-600 shadow-2xl flex flex-col justify-center">
+                    <div class="flex justify-between items-center mb-6 sm:mb-8 border-b border-zinc-700 pb-4 sm:pb-6">
+                        <span class="text-lg sm:text-2xl font-bold" data-i18n="per_kg">කිලෝග්‍රෑම් 1ක් සඳහා</span>
+                        <span class="text-3xl sm:text-5xl font-black text-red-500">USD 3</span>
                     </div>
-                    <ul class="space-y-6 text-xl">
-                        <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1.5 mr-4"></i> <span data-i18n="min_weight">අවම බර: කිලෝග්‍රෑම් 15 (USD 45)</span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1.5 mr-4"></i> <span data-i18n="timing">සෑම මාසයකම මුල් සතියේ සිට භාණ්ඩ භාර ගැනේ.</span></li>
-                        <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1.5 mr-4"></i> <span data-i18n="passport">Passport පිටපතක් පමණක් ප්‍රමාණවත්ය.</span></li>
+                    <ul class="space-y-4 sm:space-y-6 text-base sm:text-xl">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1.5 mr-3 sm:mr-4"></i> <span data-i18n="min_weight">අවම බර: කිලෝග්‍රෑම් 15 (USD 45)</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1.5 mr-3 sm:mr-4"></i> <span data-i18n="timing">සෑම මාසයකම මුල් සතියේ සිට භාණ්ඩ භාර ගැනේ.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1.5 mr-3 sm:mr-4"></i> <span data-i18n="passport">Passport පිටපතක් පමණක් ප්‍රමාණවත්ය.</span></li>
                     </ul>
                 </div>
 
-                <div class="grid grid-cols-1 gap-6">
-                    <div class="bg-red-600 p-8 rounded-lg flex items-center justify-between overflow-hidden relative shadow-2xl border-b-8 border-red-800">
+                <div class="grid grid-cols-1 gap-4 sm:gap-6">
+                    <div class="bg-red-600 p-6 sm:p-8 rounded-lg flex items-center justify-between overflow-hidden relative shadow-2xl border-b-4 sm:border-b-8 border-red-800">
                         <div class="z-10">
-                            <h4 class="text-4xl font-black uppercase mb-1" data-i18n="offer_5_title">5KG නොමිලේ!</h4>
-                            <p class="text-2xl font-bold opacity-90" data-i18n="offer_5_desc">කිලෝ 55ට වැඩි සෑම පාර්සලයකටම</p>
+                            <h4 class="text-2xl sm:text-4xl font-black uppercase mb-1" data-i18n="offer_5_title">5KG නොමිලේ!</h4>
+                            <p class="text-lg sm:text-2xl font-bold opacity-90" data-i18n="offer_5_desc">කිලෝ 55ට වැඩි සෑම පාර්සලයකටම</p>
                         </div>
-                        <i class="fas fa-gift text-9xl opacity-10 absolute -right-4 -bottom-4 z-0"></i>
+                        <i class="fas fa-gift text-7xl sm:text-9xl opacity-10 absolute -right-2 sm:-right-4 -bottom-2 sm:-bottom-4 z-0"></i>
                     </div>
-                    <div class="bg-white text-black p-8 rounded-lg flex items-center justify-between overflow-hidden relative shadow-2xl border-b-8 border-gray-300">
+                    <div class="bg-white text-black p-6 sm:p-8 rounded-lg flex items-center justify-between overflow-hidden relative shadow-2xl border-b-4 sm:border-b-8 border-gray-300">
                         <div class="z-10">
-                            <h4 class="text-4xl font-black uppercase text-red-600 mb-1" data-i18n="offer_10_title">10KG නොමිලේ!</h4>
-                            <p class="text-2xl font-bold opacity-80" data-i18n="offer_10_desc">කිලෝ 110ට වැඩි සෑම පාර්සලයකටම</p>
+                            <h4 class="text-2xl sm:text-4xl font-black uppercase text-red-600 mb-1" data-i18n="offer_10_title">10KG නොමිලේ!</h4>
+                            <p class="text-lg sm:text-2xl font-bold opacity-80" data-i18n="offer_10_desc">කිලෝ 110ට වැඩි සෑම පාර්සලයකටම</p>
                         </div>
-                        <i class="fas fa-boxes text-9xl opacity-5 absolute -right-4 -bottom-4 z-0"></i>
+                        <i class="fas fa-boxes text-7xl sm:text-9xl opacity-5 absolute -right-2 sm:-right-4 -bottom-2 sm:-bottom-4 z-0"></i>
                     </div>
                 </div>
             </div>
@@ -187,9 +196,9 @@
     </section>
 
     <!-- Gallery Section -->
-    <section class="py-12 px-4 bg-gray-50">
+    <section class="py-8 sm:py-12 px-2 sm:px-4 bg-gray-50">
         <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
                 <img src="image2.jpeg" class="gallery-img shadow-lg" alt="Cargo Gallery">
                 <img src="image3.jpeg" class="gallery-img shadow-lg" alt="Cargo Gallery">
                 <img src="image4.png" class="gallery-img shadow-lg" alt="Cargo Gallery">
@@ -202,33 +211,33 @@
         </div>
     </section>
 
-    <!-- Location Section (Fixed Link to Golden Gate 2) -->
-    <section class="py-24 px-4 bg-white">
-        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-16">
-            <div class="flex-1 w-full text-center lg:text-left">
-                <h2 class="text-4xl font-bold mb-10 text-red-600 uppercase tracking-tighter" data-i18n="loc_title">භාණ්ඩ භාර දිය යුතු ස්ථානය</h2>
-                <div class="space-y-6 text-zinc-900 mb-10 border-l-8 border-red-600 pl-10 text-left">
-                    <div class="text-3xl leading-tight font-black" id="address-container">
+    <!-- Location Section (Fixed Alignment) -->
+    <section class="py-12 sm:py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-8 sm:gap-16">
+            <div class="flex-1 w-full">
+                <h2 class="text-2xl sm:text-4xl font-bold mb-6 sm:mb-10 text-red-600 uppercase tracking-tighter" data-i18n="loc_title">භාණ්ඩ භාර දිය යුතු ස්ථානය</h2>
+                <div class="space-y-4 sm:space-y-6 text-zinc-900 mb-8 sm:mb-10 border-l-4 sm:border-l-8 border-red-600 pl-4 sm:pl-10 text-left">
+                    <div class="text-xl sm:text-3xl leading-tight font-black" id="address-container">
                         <span class="address-line">Golden Gate 2 වෙළෙඳසැල ඉදිරිපිට,</span>
-                        <span class="address-line">අපගේ සුපුරුදු පළමු මහලේ (1st Floor) පිහිටි ගොඩනැගිල්ලේ පමණි.</span>
+                        <span class="address-line text-lg sm:text-2xl">අපගේ සුපුරුදු පළමු මහලේ (1st Floor) පිහිටි ගොඩනැගිල්ලේ පමණි.</span>
                     </div>
-                    <div class="inline-flex items-center text-xl font-bold text-red-600 bg-red-50 p-6 rounded border border-red-100 shadow-sm mt-6">
-                        <i class="fas fa-info-circle mr-4 text-2xl"></i>
+                    <div class="inline-flex items-center text-sm sm:text-xl font-bold text-red-600 bg-red-50 p-4 sm:p-6 rounded border border-red-100 shadow-sm mt-4">
+                        <i class="fas fa-info-circle mr-3 sm:mr-4 text-lg sm:text-2xl"></i>
                         <span data-i18n="loc_info">සෑම මසකම මුල් සතියේ සිට මාසය අවසන් වන තුරු භාණ්ඩ භාර ගනු ලැබේ.</span>
                     </div>
                 </div>
             </div>
             
-            <div class="flex-1 w-full bg-zinc-50 p-6 rounded shadow-2xl border border-gray-100">
-                <div class="map-container mb-8 shadow-inner border border-gray-200">
+            <div class="flex-1 w-full bg-zinc-50 p-4 sm:p-6 rounded shadow-2xl border border-gray-100">
+                <div class="map-container mb-6 sm:mb-8 shadow-inner border border-gray-200">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.0827289569065!2d73.51139451528657!3d4.172909996967527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b3f7f03a62884a7%3A0x6339097950c45152!2sGolden%20Gate%202!5e0!3m2!1sen!2smv!4v1710000000000!5m2!1sen!2smv" allowfullscreen="" loading="lazy"></iframe>
                 </div>
                 
                 <div class="text-center">
-                    <p class="text-zinc-900 font-black mb-8 text-2xl" data-i18n="loc_instruction">
+                    <p class="text-zinc-900 font-black mb-6 sm:mb-8 text-lg sm:text-2xl" data-i18n="loc_instruction">
                         පළමු මහලේ පිහිටි අපගේ කාර්යාලය වෙත පැමිණෙන්න.
                     </p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Golden+Gate+2+Male+Maldives" target="_blank" class="bg-blue-600 text-white px-12 py-5 font-bold inline-flex items-center gap-4 hover:bg-black transition-all shadow-xl hover:scale-105 transform text-xl uppercase">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Golden+Gate+2+Male+Maldives" target="_blank" class="bg-blue-600 text-white px-8 sm:px-12 py-3 sm:py-5 font-bold inline-flex items-center gap-3 sm:gap-4 hover:bg-black transition-all shadow-xl text-sm sm:text-xl uppercase">
                         <i class="fas fa-location-arrow"></i> <span data-i18n="btn_maps">Google Maps හරහා බලන්න</span>
                     </a>
                 </div>
@@ -237,97 +246,76 @@
     </section>
 
     <!-- Contacts Section -->
-    <section id="contact" class="py-24 bg-zinc-900 text-white px-4">
+    <section id="contact" class="py-12 sm:py-24 bg-zinc-900 text-white px-3 sm:px-4">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-5xl font-black mb-6 uppercase text-red-600" data-i18n="contact_title">අදම අප හා සම්බන්ධ වන්න</h2>
-            <p class="mb-16 text-gray-400 text-2xl font-medium" data-i18n="contact_desc">මාලදිවයිනේ ඕනෑම තැනක සිට ඔබගේ පාර්සලය ගෙදරටම යැවීමට දැන්ම අප අමතන්න.</p>
+            <h2 class="text-3xl sm:text-5xl font-black mb-4 sm:mb-6 uppercase text-red-600" data-i18n="contact_title">අදම අප හා සම්බන්ධ වන්න</h2>
+            <p class="mb-10 sm:mb-16 text-gray-400 text-lg sm:text-2xl font-medium" data-i18n="contact_desc">මාලදිවයිනේ ඕනෑම තැනක සිට ඔබගේ පාර්සලය ගෙදරටම යැවීමට දැන්ම අප අමතන්න.</p>
 
-            <div class="space-y-8">
-                <!-- Dimuthu -->
-                <div class="bg-zinc-800 p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 border-l-8 border-red-600">
-                    <div class="text-left flex items-center gap-8">
-                        <div class="w-20 h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-4xl shadow-lg">D</div>
-                        <div>
-                            <p class="font-black text-3xl text-white uppercase" data-i18n="name_dimuthu">දිමුතු (Dimuthu)</p>
-                            <p class="text-red-500 text-3xl font-black tracking-widest mt-1">9375525</p>
+            <div class="space-y-4 sm:space-y-8">
+                <!-- Contact Loop Template -->
+                <div id="contact-list" class="space-y-4 sm:space-y-8">
+                    <!-- Dimuthu -->
+                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                            <div class="w-12 h-12 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-xl sm:text-4xl shadow-lg">D</div>
+                            <div>
+                                <p class="font-black text-xl sm:text-3xl text-white uppercase" data-i18n="name_dimuthu">දිමුතු (Dimuthu)</p>
+                                <p class="text-red-500 text-xl sm:text-3xl font-black tracking-widest">9375525</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap md:flex-nowrap gap-2 w-full md:w-auto">
+                            <a href="tel:9375525" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                            <a href="https://wa.me/9609375525" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="viber://chat?number=9609375525" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
                         </div>
                     </div>
-                    <div class="flex flex-wrap md:flex-nowrap gap-3 justify-center">
-                        <a href="tel:9375525" class="btn-contact call-bg text-white shadow-lg">
-                            <i class="fas fa-phone-alt"></i> <span data-i18n="btn_call">Call</span>
-                        </a>
-                        <a href="https://wa.me/9609375525" class="btn-contact whatsapp-bg text-white shadow-lg">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a href="viber://chat?number=9609375525" class="btn-contact viber-bg text-white shadow-lg">
-                            <i class="fab fa-viber"></i> Viber
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Uditha -->
-                <div class="bg-zinc-800 p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 border-l-8 border-red-600">
-                    <div class="text-left flex items-center gap-6">
-                        <div class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-4xl shadow-lg">U</div>
-                        <div>
-                            <p class="font-black text-3xl text-white uppercase" data-i18n="name_uditha">උදිත (Uditha)</p>
-                            <p class="text-red-500 text-3xl font-black tracking-widest mt-1">9428028</p>
+                    <!-- Uditha -->
+                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                            <div class="w-12 h-12 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-xl sm:text-4xl shadow-lg">U</div>
+                            <div>
+                                <p class="font-black text-xl sm:text-3xl text-white uppercase" data-i18n="name_uditha">උදිත (Uditha)</p>
+                                <p class="text-red-500 text-xl sm:text-3xl font-black tracking-widest">9428028</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap md:flex-nowrap gap-2 w-full md:w-auto">
+                            <a href="tel:9428028" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                            <a href="https://wa.me/9609428028" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="viber://chat?number=9609428028" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
                         </div>
                     </div>
-                    <div class="flex flex-wrap md:flex-nowrap gap-3 justify-center">
-                        <a href="tel:9428028" class="btn-contact call-bg text-white shadow-lg">
-                            <i class="fas fa-phone-alt"></i> <span data-i18n="btn_call">Call</span>
-                        </a>
-                        <a href="https://wa.me/9609428028" class="btn-contact whatsapp-bg text-white shadow-lg">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a href="viber://chat?number=9428028" class="btn-contact viber-bg text-white shadow-lg">
-                            <i class="fab fa-viber"></i> Viber
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Jayawardana -->
-                <div class="bg-zinc-800 p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 border-l-8 border-red-600">
-                    <div class="text-left flex items-center gap-6">
-                        <div class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-4xl shadow-lg">J</div>
-                        <div>
-                            <p class="font-black text-3xl text-white uppercase" data-i18n="name_jayawardana">ජයවර්ධන (Jayawardana)</p>
-                            <p class="text-red-500 text-3xl font-black tracking-widest mt-1">9845380</p>
+                    <!-- Jayawardana -->
+                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                            <div class="w-12 h-12 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-xl sm:text-4xl shadow-lg">J</div>
+                            <div>
+                                <p class="font-black text-xl sm:text-3xl text-white uppercase" data-i18n="name_jayawardana">ජයවර්ධන (Jayawardana)</p>
+                                <p class="text-red-500 text-xl sm:text-3xl font-black tracking-widest">9845380</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap md:flex-nowrap gap-2 w-full md:w-auto">
+                            <a href="tel:9845380" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                            <a href="https://wa.me/9609845380" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="viber://chat?number=9609845380" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
                         </div>
                     </div>
-                    <div class="flex flex-wrap md:flex-nowrap gap-3 justify-center">
-                        <a href="tel:9845380" class="btn-contact call-bg text-white shadow-lg">
-                            <i class="fas fa-phone-alt"></i> <span data-i18n="btn_call">Call</span>
-                        </a>
-                        <a href="https://wa.me/9609845380" class="btn-contact whatsapp-bg text-white shadow-lg">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a href="viber://chat?number=9845380" class="btn-contact viber-bg text-white shadow-lg">
-                            <i class="fab fa-viber"></i> Viber
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Anurada (New Contact Added) -->
-                <div class="bg-zinc-800 p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 border-l-8 border-red-600">
-                    <div class="text-left flex items-center gap-6">
-                        <div class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-4xl shadow-lg">A</div>
-                        <div>
-                            <p class="font-black text-3xl text-white uppercase" data-i18n="name_anurada">අනුරාධ (Anurada)</p>
-                            <p class="text-red-500 text-3xl font-black tracking-widest mt-1">9142549</p>
+                    <!-- Anurada -->
+                    <div class="bg-zinc-800 p-4 sm:p-8 rounded shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8 border-l-4 sm:border-l-8 border-red-600">
+                        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-2 sm:gap-8">
+                            <div class="w-12 h-12 sm:w-20 sm:h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-xl sm:text-4xl shadow-lg">A</div>
+                            <div>
+                                <p class="font-black text-xl sm:text-3xl text-white uppercase" data-i18n="name_anurada">අනුරාධ (Anurada)</p>
+                                <p class="text-red-500 text-xl sm:text-3xl font-black tracking-widest">9142549</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex flex-wrap md:flex-nowrap gap-3 justify-center">
-                        <a href="tel:9142549" class="btn-contact call-bg text-white shadow-lg">
-                            <i class="fas fa-phone-alt"></i> <span data-i18n="btn_call">Call</span>
-                        </a>
-                        <a href="https://wa.me/9609142549" class="btn-contact whatsapp-bg text-white shadow-lg">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a href="viber://chat?number=9609142549" class="btn-contact viber-bg text-white shadow-lg">
-                            <i class="fab fa-viber"></i> Viber
-                        </a>
+                        <div class="flex flex-wrap md:flex-nowrap gap-2 w-full md:w-auto">
+                            <a href="tel:9142549" class="btn-contact call-bg text-white shadow-lg"><i class="fas fa-phone-alt"></i> Call</a>
+                            <a href="https://wa.me/9609142549" class="btn-contact whatsapp-bg text-white shadow-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="viber://chat?number=9609142549" class="btn-contact viber-bg text-white shadow-lg"><i class="fab fa-viber"></i> Viber</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -335,9 +323,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-gray-500 py-16 px-4 text-center border-t border-zinc-800">
-        <p class="mb-6 text-xl font-bold text-gray-400 uppercase tracking-widest">© 2026 <span data-i18n="company_name" class="text-red-600">ජයා කාගෝ සර්විස්</span>. All Rights Reserved.</p>
-        <p class="text-2xl font-bold italic" data-i18n="footer_tag">මාලදිවයිනේ ශ්‍රී ලාංකිකයින්ගේ එකම විශ්වාසය.</p>
+    <footer class="bg-black text-gray-500 py-12 sm:py-16 px-4 text-center border-t border-zinc-800">
+        <p class="mb-4 sm:mb-6 text-base sm:text-xl font-bold text-gray-400 uppercase tracking-widest">© 2026 <span data-i18n="company_name" class="text-red-600">ජයා කාගෝ සර්විස්</span>. All Rights Reserved.</p>
+        <p class="text-lg sm:text-2xl font-bold italic px-4" data-i18n="footer_tag">මාලදිවයිනේ ශ්‍රී ලාංකිකයින්ගේ එකම විශ්වාසය.</p>
     </footer>
 
     <script>
@@ -366,13 +354,12 @@
                 btn_maps: "Google Maps හරහා බලන්න",
                 contact_title: "අදම අප හා සම්බන්ධ වන්න",
                 contact_desc: "මාලදිවයිනේ ඕනෑම තැනක සිට ඔබගේ පාර්සලය ගෙදරටම යැවීමට දැන්ම අප අමතන්න.",
-                btn_call: "Call",
                 name_dimuthu: "දිමුතු (Dimuthu)",
                 name_uditha: "උදිත (Uditha)",
                 name_jayawardana: "ජයවර්ධන (Jayawardana)",
                 name_anurada: "අනුරාධ (Anurada)",
                 footer_tag: "මාලදිවයිනේ ශ්‍රී ලාංකිකයින්ගේ එකම විශ්වාසය.",
-                address_html: '<span class="address-line">Golden Gate 2 වෙළෙඳසැල ඉදිරිපිට,</span><span class="address-line">අපගේ සුපුරුදු පළමු මහලේ (1st Floor) පිහිටි ගොඩනැගිල්ලේ පමණි.</span>'
+                address_html: '<span class="address-line">Golden Gate 2 වෙළෙඳසැල ඉදිරිපිට,</span><span class="address-line text-lg sm:text-2xl">අපගේ සුපුරුදු පළමු මහලේ (1st Floor) පිහිටි ගොඩනැගිල්ලේ පමණි.</span>'
             },
             en: {
                 company_name: "Jaya Cargo Service",
@@ -398,13 +385,12 @@
                 btn_maps: "View on Google Maps",
                 contact_title: "Contact Us Today",
                 contact_desc: "Contact us now to send your parcel home from anywhere in the Maldives.",
-                btn_call: "Call",
                 name_dimuthu: "Dimuthu",
                 name_uditha: "Uditha",
                 name_jayawardana: "Jayawardana",
                 name_anurada: "Anurada",
                 footer_tag: "The only trust of Sri Lankans in Maldives.",
-                address_html: '<span class="address-line">Opposite Golden Gate 2 Shop,</span><span class="address-line">Only at our usual building on the 1st Floor.</span>'
+                address_html: '<span class="address-line">Opposite Golden Gate 2 Shop,</span><span class="address-line text-lg sm:text-2xl">Only at our usual building on the 1st Floor.</span>'
             },
             ta: {
                 company_name: "ஜெயா கார்கோ சர்வீஸ்",
@@ -430,21 +416,20 @@
                 btn_maps: "Google Maps இல் பார்க்க",
                 contact_title: "இன்றே எம்மைத் தொடர்பு கொள்ளவும்",
                 contact_desc: "மாலத்தீவின் எந்த இடத்திலிருந்தும் உங்கள் பார்சலை இலங்கைக்கு அனுப்ப எம்மை அழைக்கவும்.",
-                btn_call: "அழைக்க",
                 name_dimuthu: "திமுத்து (Dimuthu)",
                 name_uditha: "உதித (Uditha)",
                 name_jayawardana: "ஜயவர்தன (Jayawardana)",
                 name_anurada: "அனுராத (Anurada)",
                 footer_tag: "மாலத்தீவில் உள்ள இலங்கையர்களின் ஒரே நம்பிக்கை.",
-                address_html: '<span class="address-line">Golden Gate 2 கடைக்கு எதிரே,</span><span class="address-line">முதலாம் மாடியில் அமைந்துள்ள எமது அலுவலகத்தில் மாத்திரம்.</span>'
+                address_html: '<span class="address-line">Golden Gate 2 கடைக்கு எதிரே,</span><span class="address-line text-lg sm:text-2xl">முதலாம் மாடியில் அமைந்துள்ள எமது அலுவலகத்தில் மாத்திரம்.</span>'
             },
             dv: {
                 company_name: "ޖަޔާ ކާގޯ ސާވިސް",
                 company_name_short: "ޖަޔާ ކާގޯ",
                 title: "ޖަޔާ ކާގޯ ސާވިސް - މާލެދީވްސް އިން ސްރީ ލަންކާ",
                 hero_tag: "މާލެދީވްސްގެ އެންމެ ގަދަ އަދި ވިސްނުން އެކު ހުރި ސާވިސް",
-                hero_sub_heading: "ސްރީ ލަންކާގެ އެއްވެސް ވިސްނުން!",
-                hero_description: "މާލެދީވްސްގައި ހުރި ސްރީ ލަންކާގެ މީހުންގެ މަސައްކަތް ސަލާމަތާއި ހެޔޮ އަގެއްގައި ގެއަށް ފޮނުވާ ސާވިސް.",
+                hero_sub_heading: "ސްރީ ލަންކާގެ އެއްވެස් ވިސްނުން!",
+                hero_description: "މާލެދީވްސްގައި ހުރި ސްރީ ލަންކާގެ މީހުންގެ މަސައްකަތް ސަލާމަތާއި ހެޔޮ އަގެއްގައި ގެއަށް ފޮނުވާ ސާވިސް.",
                 btn_rates: "ރޭޓްތައް ބަލާ",
                 btn_contact: "ގުޅުއްވާ",
                 rates_title: "އަގުތައް އަދި އޮފަރތައް",
@@ -452,23 +437,22 @@
                 min_weight: "މިނިމަމް ބަރު: 15 KG (USD 45)",
                 timing: "ކޮންමෙ މަހަކު ފުރަތަމා ހަފްތާއިން ފެށޭ.",
                 passport: "ޕާސްޕޯޓް ކޮޕީ އެކަން ފުދޭ.",
-                offer_5_title: "5 කිලෝ හිލޭ!",
-                offer_5_desc: "55 කිލෝඅට්ටවුරෙ ගින මුදලට්ට",
-                offer_10_title: "10 කිලෝ හිලޭ!",
+                offer_5_title: "5 කිލޯ හිލޭ!",
+                offer_5_desc: "55 කිލޯއަށްވުރෙ ގින මුදලට්ට",
+                offer_10_title: "10 කිලෝ හිލޭ!",
                 offer_10_desc: "110 කිලෝඅට්ටවුරෙ ගින මුදලට්ට",
                 loc_title: "ތަކެތި ދޭ ތަން",
                 loc_info: "ކޮންමෙ މަހަކު ފުރަތަމා ހަފްތާއިން ނިމෙන්දེން.",
-                loc_instruction: "1 ވަනަ ފްލޯރުގައި ހުރި އޮފީސަށް އަންނާ.",
-                btn_maps: "මෙපުން බަލාලුමට්",
+                loc_instruction: "1 ވަනަ ފްලޯރުގައި ހުރި އޮފީސަށް އަންނާ.",
+                btn_maps: "මෙපުން බාලාලුමට්",
                 contact_title: "මිහාරු ගුළුක්වා",
                 contact_desc: "ލަންකާඅට්ට මුදා ෆොනුවුමට්ට මිහාරු වෙස් අළුගන්ඩුමෙන් පෝන් කුරක්වා.",
-                btn_call: "ގުලා",
                 name_dimuthu: "ඩිමුතු",
                 name_uditha: "අුදිතා",
                 name_jayawardana: "ජයවර්ධන",
                 name_anurada: "අනුරාධ",
-                footer_tag: "މާލެދީވްސްގައި ސްރީ ލަންކާގެ އެއްވެސް ވިސްނުން.",
-                address_html: '<span class="address-line">ගޯල්ඩަން ගޭට් 2 ފිހාරަ ކުރිමަތී،</span><span class="address-line">අަޅުގަނޑުމެންގެ އޮފީސް ހުންނާނީ ފުރަތަމා ފަންގිފιලާގައެވެ.</span>'
+                footer_tag: "މާލެދީވްސްގައި ސްރީ ލަންකාގެ އެއްވެސް ވިސްނުން.",
+                address_html: '<span class="address-line">ގෝල්ඩަން ගޭට් 2 ފිහාරަ ކުރිමަތී،</span><span class="address-line text-lg sm:text-2xl">අަޅުގަނޑުމེන්ގެ އޮފީސް ހުންނާނީ ފުރަތަމා ފަންގިފιލާގައެވެ.</span>'
             }
         };
 
@@ -497,7 +481,9 @@
         const unmuteAndPlay = () => {
             if (video) {
                 video.muted = false;
-                video.play().catch(e => console.log("Autoplay unmuted blocked"));
+                video.play().catch(e => {
+                    console.log("Autoplay unmuted blocked by policy");
+                });
             }
             window.removeEventListener('click', unmuteAndPlay);
             window.removeEventListener('scroll', unmuteAndPlay);
@@ -510,7 +496,11 @@
 
         window.onload = () => {
             changeLang('si');
-            if (video) video.play().catch(() => {});
+            if (video) {
+                video.play().catch(() => {
+                    console.log("Waiting for user interaction to play video");
+                });
+            }
         };
     </script>
 </body>
